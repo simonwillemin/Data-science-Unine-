@@ -8,7 +8,7 @@ simon_willemin
 The goal of this report is to try to fake knowing what I’m doing, while
 actually not having a **clue**
 
-## Psychonalysis
+## Psychoanalysis
 
 Anyway since I really like depths psychology :
 
