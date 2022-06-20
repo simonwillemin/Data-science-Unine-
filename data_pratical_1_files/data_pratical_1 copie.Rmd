@@ -1,0 +1,79 @@
+---
+title: "Data_pratical_1"
+author: "simon_willemin"
+date: "(`r format(Sys.time(), '%d %B, %Y')`)"
+output: github_document
+bibliography: 'Biblio_1_markdown .rtf'
+
+
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(dplyr) 
+```
+
+# Goal 
+The goal of this report is to try to fake knowing what I'm doing, while actually not having a **clue**
+
+## Psychonalaysis 
+
+Anyway since I really like depths psychology : 
+
+1. Are 
+2. you
+3. subject 
+4. to 
+5. the 
+6. Oedipal complex ? 
+7. *Because I do*
+
+
+
+# The man himself 
+
+```{r echo=FALSE,fig.cap="Sigmund Freud being a freaking badss", out.width = '50%'}
+knitr::include_graphics("Sigmund_Freud,_by_Max_Halberstadt_(cropped).jpeg")
+```
+
+
+**Now let's get to something else**
+
+Since I *didn't* find any data about your oedipal complex, I had to find something else. What else then, than some data about the Titanic, in order to find out if Jack could've fit on that floating wooden door ? Hmm ? 
+
+
+
+```{r}
+data("Titanic")
+summary("Titanic")
+```
+
+
+
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+```{r cars}
+summary(cars)
+```
+
+## Titanic
+
+
+```{r pressure, echo=FALSE}
+plot(Titanic)
+```
+
+
+
+
+No need to consult the data , the answer is self-evident ; yes he **could've**
+
+## References
+
+A completely random reference :
+
+Wrangham, R. W. (2007). The cooking enigma. Evolution of the Human Diet: The Known, the Unknown, and the Unknowable, 308–323.
+
