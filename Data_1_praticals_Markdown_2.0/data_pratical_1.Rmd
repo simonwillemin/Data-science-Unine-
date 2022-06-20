@@ -3,7 +3,7 @@ title: "Data_pratical_1"
 author: "simon_willemin"
 date: "(`r format(Sys.time(), '%d %B, %Y')`)"
 output: github_document
-bibliography: 'Biblio_1_markdown.rtf'
+
 
 
 ---

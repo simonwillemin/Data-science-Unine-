@@ -1,14 +1,14 @@
 Data_pratical_1
 ================
 simon_willemin
-(17 juin, 2022)
+(20 juin, 2022)
 
 # Goal
 
 The goal of this report is to try to fake knowing what I’m doing, while
 actually not having a **clue**
 
-## Psychoanalysis
+## Psychonalaysis
 
 Anyway since I really like depths psychology :
 
