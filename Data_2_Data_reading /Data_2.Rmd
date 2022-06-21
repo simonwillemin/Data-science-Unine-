@@ -112,7 +112,7 @@ str(satellites)
 ```
 
 
-That is confirmed by the `str` analysis that shows us that most of the data is `character` while one of the variables is integer. 
+That is confirmed by the `str` analysis that shows us that most of the data is `character` while one of the variables is integer. The latter is simply the rank of launch (the order) from the first one in 1957 to the latest one in 2022. 
 
 
 ## R Markdown
