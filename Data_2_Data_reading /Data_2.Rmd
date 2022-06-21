@@ -89,11 +89,30 @@ Just like the airports codes for instance
 # Dataset 3
 
 
+The third data that we will take a look at today regards satellite launches from 1957 to 2022. So from the very beginning of artificial satellites with Sputnik to all the modern ones being launched via the Starlink programm for instance or via the chinese exploration of space that tried the latest launches early june 2022. 
+
+A quick look at this data via `head` informs us that most of the data will be qualitative even if dates are involved. 
+
+```{r satellites}
+satellites <- read.csv("sattelite launches.csv")
+kable(head(satellites))
+
+```
 
 
 
+```{r latest satellites}
+
+kable(tail(satellites))
+
+```
+
+```{r satellites-data-type}
+str(satellites)
+```
 
 
+That is confirmed by the `str` analysis that shows us that most of the data is `character` while one of the variables is integer. 
 
 
 ## R Markdown

@@ -413,6 +413,202 @@ kable(head(airlines))</code></pre>
 </div>
 <div id="dataset-3" class="section level1">
 <h1>Dataset 3</h1>
+<p>The third data that we will take a look at today regards satellite launches from 1957 to 2022. So from the very beginning of artificial satellites with Sputnik to all the modern ones being launched via the Starlink programm for instance or via the chinese exploration of space that tried the latest launches early june 2022.</p>
+<p>A quick look at this data via <code>head</code> informs us that most of the data will be qualitative even if dates are involved.</p>
+<pre class="r"><code>satellites &lt;- read.csv(&quot;sattelite launches.csv&quot;)
+kable(head(satellites))</code></pre>
+<table>
+<colgroup>
+<col width="7%" />
+<col width="8%" />
+<col width="8%" />
+<col width="9%" />
+<col width="10%" />
+<col width="6%" />
+<col width="9%" />
+<col width="39%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="right">norad_id</th>
+<th align="left">cospar_id</th>
+<th align="left">name</th>
+<th align="left">launch_date</th>
+<th align="left">flight_ended</th>
+<th align="left">status</th>
+<th align="left">destination</th>
+<th align="left">owner</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">1</td>
+<td align="left">1957-001A</td>
+<td align="left">SL-1 R/B</td>
+<td align="left">3-Oct-57</td>
+<td align="left">1-Dec-57</td>
+<td align="left">Decayed</td>
+<td align="left"></td>
+<td align="left">Commonwealth of Independent States (former USSR)</td>
+</tr>
+<tr class="even">
+<td align="right">2</td>
+<td align="left">1957-001B</td>
+<td align="left">SPUTNIK 1</td>
+<td align="left">3-Oct-57</td>
+<td align="left">3-Jan-58</td>
+<td align="left">Decayed</td>
+<td align="left"></td>
+<td align="left">Commonwealth of Independent States (former USSR)</td>
+</tr>
+<tr class="odd">
+<td align="right">3</td>
+<td align="left">1957-002A</td>
+<td align="left">SPUTNIK 2</td>
+<td align="left">3-Nov-57</td>
+<td align="left">14-Apr-58</td>
+<td align="left">Decayed</td>
+<td align="left"></td>
+<td align="left">Commonwealth of Independent States (former USSR)</td>
+</tr>
+<tr class="even">
+<td align="right">4</td>
+<td align="left">1958-001A</td>
+<td align="left">EXPLORER 1</td>
+<td align="left">1-Feb-58</td>
+<td align="left">30-Mar-70</td>
+<td align="left">Decayed</td>
+<td align="left"></td>
+<td align="left">United States</td>
+</tr>
+<tr class="odd">
+<td align="right">5</td>
+<td align="left">1958-002B</td>
+<td align="left">VANGUARD 1</td>
+<td align="left">17-Mar-58</td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left">United States</td>
+</tr>
+<tr class="even">
+<td align="right">6</td>
+<td align="left">1958-003A</td>
+<td align="left">EXPLORER 3</td>
+<td align="left">26-Mar-58</td>
+<td align="left">27-Jun-58</td>
+<td align="left">Decayed</td>
+<td align="left"></td>
+<td align="left">United States</td>
+</tr>
+</tbody>
+</table>
+<pre class="r"><code>kable(tail(satellites))</code></pre>
+<table style="width:100%;">
+<colgroup>
+<col width="5%" />
+<col width="7%" />
+<col width="8%" />
+<col width="10%" />
+<col width="10%" />
+<col width="11%" />
+<col width="10%" />
+<col width="10%" />
+<col width="23%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left"></th>
+<th align="right">norad_id</th>
+<th align="left">cospar_id</th>
+<th align="left">name</th>
+<th align="left">launch_date</th>
+<th align="left">flight_ended</th>
+<th align="left">status</th>
+<th align="left">destination</th>
+<th align="left">owner</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">52745</td>
+<td align="right">52797</td>
+<td align="left">2022-060A</td>
+<td align="left">SHENZHOU 14</td>
+<td align="left">4-Jun-22</td>
+<td align="left"></td>
+<td align="left">Operational</td>
+<td align="left"></td>
+<td align="left">People’s Republic of China</td>
+</tr>
+<tr class="even">
+<td align="left">52746</td>
+<td align="right">52798</td>
+<td align="left">2022-060B</td>
+<td align="left">CZ-2F R/B</td>
+<td align="left">4-Jun-22</td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left">People’s Republic of China</td>
+</tr>
+<tr class="odd">
+<td align="left">52747</td>
+<td align="right">52799</td>
+<td align="left">2022-060C</td>
+<td align="left">OBJECT C</td>
+<td align="left">4-Jun-22</td>
+<td align="left">6-Jun-22</td>
+<td align="left">Decayed</td>
+<td align="left"></td>
+<td align="left">People’s Republic of China</td>
+</tr>
+<tr class="even">
+<td align="left">52748</td>
+<td align="right">52800</td>
+<td align="left">2022-060D</td>
+<td align="left">OBJECT D</td>
+<td align="left">4-Jun-22</td>
+<td align="left">7-Jun-22</td>
+<td align="left">Decayed</td>
+<td align="left"></td>
+<td align="left">People’s Republic of China</td>
+</tr>
+<tr class="odd">
+<td align="left">52749</td>
+<td align="right">52801</td>
+<td align="left">2022-060E</td>
+<td align="left">OBJECT E</td>
+<td align="left">4-Jun-22</td>
+<td align="left">11-Jun-22</td>
+<td align="left">Decayed</td>
+<td align="left"></td>
+<td align="left">People’s Republic of China</td>
+</tr>
+<tr class="even">
+<td align="left">52750</td>
+<td align="right">52802</td>
+<td align="left">2022-060F</td>
+<td align="left">OBJECT F</td>
+<td align="left">4-Jun-22</td>
+<td align="left">11-Jun-22</td>
+<td align="left">Decayed</td>
+<td align="left"></td>
+<td align="left">People’s Republic of China</td>
+</tr>
+</tbody>
+</table>
+<pre class="r"><code>str(satellites)</code></pre>
+<pre><code>## &#39;data.frame&#39;:    52750 obs. of  8 variables:
+##  $ norad_id    : int  1 2 3 4 5 6 7 8 9 10 ...
+##  $ cospar_id   : chr  &quot;1957-001A&quot; &quot;1957-001B&quot; &quot;1957-002A&quot; &quot;1958-001A&quot; ...
+##  $ name        : chr  &quot;SL-1 R/B&quot; &quot;SPUTNIK 1&quot; &quot;SPUTNIK 2&quot; &quot;EXPLORER 1&quot; ...
+##  $ launch_date : chr  &quot;3-Oct-57&quot; &quot;3-Oct-57&quot; &quot;3-Nov-57&quot; &quot;1-Feb-58&quot; ...
+##  $ flight_ended: chr  &quot;1-Dec-57&quot; &quot;3-Jan-58&quot; &quot;14-Apr-58&quot; &quot;30-Mar-70&quot; ...
+##  $ status      : chr  &quot;Decayed&quot; &quot;Decayed&quot; &quot;Decayed&quot; &quot;Decayed&quot; ...
+##  $ destination : chr  &quot;&quot; &quot;&quot; &quot;&quot; &quot;&quot; ...
+##  $ owner       : chr  &quot;Commonwealth of Independent States (former USSR)&quot; &quot;Commonwealth of Independent States (former USSR)&quot; &quot;Commonwealth of Independent States (former USSR)&quot; &quot;United States&quot; ...</code></pre>
+<p>That is confirmed by the <code>str</code> analysis that shows us that most of the data is <code>character</code> while one of the variables is integer.</p>
 <div id="r-markdown" class="section level2">
 <h2>R Markdown</h2>
 <p>This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <a href="http://rmarkdown.rstudio.com" class="uri">http://rmarkdown.rstudio.com</a>.</p>
