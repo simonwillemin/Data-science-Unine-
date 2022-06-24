@@ -1,7 +1,7 @@
 Data_pratical_1
 ================
 simon_willemin
-(20 juin, 2022)
+(24 juin, 2022)
 
 # Goal
 
