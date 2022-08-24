@@ -1,0 +1,74 @@
+---
+title: " Data 5 - Data Visualization"
+author: "Simon Willemin"
+date: "`r format(Sys.time(), '%d %B %Y')`"
+output: 
+  github_document:
+    toc: true
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r, message= F , warning= F}
+library(readr)
+library(dslabs)
+library(tidyverse)
+library(knitr)
+library(ggplot2)
+```
+
+We will be using this the `gapminder` dataset from the `dslabs` package which contains the following variables : 
+
+
+* country.
+* year.
+* infant_mortality. Infant deaths per 1000.
+* life_expectancy. Life expectancy in years.
+* fertility. Average number of children per woman.
+* population. Country population.
+* gpd. GDP according to World Bankdev.
+* continent.
+* region. Geographical region.
+
+What are the data types : 
+
+```{r str}
+str(gapminder)
+```
+
+--> 5 numeric vectors, 3 factors and 1 integer vector.
+
+We will then transform it into a long format : 
+
+```{r long}
+gapminder_long <- gapminder %>% 
+  pivot_longer(c("infant_mortality", "life_expectancy", "fertility", "population", "gdp"), names_to = "variable")
+gapminder_long %>% head() %>% kable()
+```
+
+Then, we will proceed to unite both continent and region columns : 
+
+```{r unite}
+gapminder_long <- gapminder_long %>% 
+  unite(cont_region, continent, region)
+gapminder_long %>% head() %>% kable()
+```
+
+And then revert it : 
+
+```{r separate}
+gapminder_long <- gapminder_long %>% 
+  separate(cont_region, into=c("continent", "region"), sep="_")
+gapminder_long %>% head() %>% kable()
+```
+
+We will finally plot mortality against life expectancy : 
+
+```{r plot, warning=FALSE}
+ggplot(gapminder, aes(infant_mortality, life_expectancy)) +
+  geom_point()
+```
+
+
