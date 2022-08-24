@@ -1,0 +1,118 @@
+
+---
+title: "Data Wrangling "
+author: "Simon Willemin"
+date: "`r format(Sys.time(), '%d %B %Y')`"
+output:
+  github_document:
+    toc: yes
+---
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r message=FALSE, warning=FALSE}
+library(knitr)
+library(dplyr)
+library(readr)
+library(dslabs)
+```
+
+
+## Filtering 
+
+Let's first `filter()` the data for the United States and put them in a dataframe.
+```{r}
+USA_country_filter <- gapminder %>% 
+  filter(country == "United States")
+```
+
+Let's now do that for Switzerland 
+
+```{r}
+Switzerland_country_filter <- gapminder %>% 
+  filter(country == "Switzerland")
+```
+
+## Selecting
+
+Let's now `select()` some interesting variable for the USA
+
+```{r}
+USA_selected <- USA_country_filter %>%
+  select(fertility, population, year)
+  
+str(USA_selected)
+head(USA_selected) %>% kable()
+tail(USA_selected) %>% kable()
+```
+
+And the same for Switzerland 
+
+```{r}
+Switzerland_selected <- Switzerland_country_filter %>%
+  select(fertility, population, year)
+  
+str(Switzerland_selected)
+head(Switzerland_selected) %>% kable()
+tail(Switzerland_selected) %>% kable()
+```
+
+
+## Arranging 
+```{r}
+USA_selected %>%
+  arrange(year)
+```
+
+We can here notice that the overall fertility rates drop over the years, while the population constantly increases. 
+Interestingly, after a lower-than-two fertility rate period in the 70's, it increased again later on, and stabilized.
+
+```{r}
+Switzerland_selected %>%
+  arrange(year)
+```
+
+Whereas in Switzerland, it was at first (in the 1960's) lower than in the US at the same period. However, it shrank more regularly and is now at a low since the 1980's already ! 
+
+## Group by and Summarize
+
+```{r}
+na.omit(gapminder) %>%
+  group_by(country) %>%
+  summarize(total_fertility = sum (fertility)) %>%
+  arrange(desc(total_fertility)) %>%
+  head()
+```
+
+```{r}
+na.omit(gapminder) %>%
+  group_by(country) %>%
+  summarize(total_fertility = sum (fertility)) %>%
+  arrange(desc(total_fertility)) %>%
+  tail()
+```
+
+We can here usprisingly notice that the most fertile country (over the years) is an african country, namely Rwanda. Also, the least fertile one is Ireland. 
+
+## Merging
+
+We could for instance merge the `results_us_election_2016` and `murders` datasets. 
+
+```{r}
+head(full_join(results_us_election_2016, murders)) %>% kable()
+```
+
+# References
+
+Jennifer Bryan (NA). gapminder: Data from Gapminder.
+https://github.com/jennybc/gapminder,
+http://www.gapminder.org/data/,
+https://doi.org/10.5281/
+
+Rogers, S. (2011, October 5). The murder map of London’s boroughs. The Guardian. http://www.theguardian.com/news/datablog/interactive/2011/oct/05/murder-london-map
+
+
+WIlliams, Jack, 2022, "Elections Performance Index 2016", https://doi.org/10.7910/DVN/TSUQOA, Harvard Dataverse, V2, UNF:6:p1RbweyWRBJUm7A957ZaAQ== [fileUNF]
+
+
