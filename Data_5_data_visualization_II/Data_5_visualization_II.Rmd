@@ -1,0 +1,51 @@
+---
+title: "Data 5 - Visualization II"
+author: "Simon Willemin"
+date: "`r format(Sys.time(), '%d %B %Y')`"
+output: 
+  github_document:
+    toc: true
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r, message= F , warning= F}
+library(readr)
+library(dslabs)
+library(tidyverse)
+library(knitr)
+library(ggplot2)
+```
+
+```{r}
+str(cars)
+```
+
+```{r}
+summary(cars)
+```
+
+```{r}
+print(cars)
+```
+
+## Description of the data
+We will take a look at the `cars` data, which is a pretty straightforward two discrete numerical variables dataset. 
+One describes the speed at the "braking point" and the other the distance necessary to stop the car. 
+
+## Correlation ? 
+
+We will test if an increase of the speed of the car results in an increase of the necessary distance to stop it.
+
+
+```{r}
+ggplot(cars, aes(speed, dist))+
+  geom_point()+
+  geom_smooth(method = "lm", se = FALSE)
+```
+
+As expected (obviously) when can contemplate a strong correlation between to the two. 
+
+Now, regarding the outliers ; there is always some kind of variability when testing multiple setups. It could be that the weather conditions were different, hence strongly impacting the braking distance, or the tires (or their wearing state) might've been different. However, there is still an overall correlation as you can see on the plot. 
