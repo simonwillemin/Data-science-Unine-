@@ -1,0 +1,119 @@
+---
+title: "Data_7 Linear Models"
+author: "Simon Willemin"
+date: "(`r format(Sys.time(), '%d %B, %Y')`)"
+output: 
+  github_document:
+    toc: true
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+```{r packages, message=FALSE, warning=FALSE}
+library(tidyverse)
+library(knitr)
+library(dslabs)
+```
+
+#The Dataset 
+
+?cars
+
+Let's get back to our faithful `cars` data. 
+
+
+```{r str}
+str(cars)
+kable(head(cars))
+```
+
+This data - which is old (from the 1920's) - describes the speed of cars and the distances taken to stop. The dataframe has 50 observations of only two variables. Namely, the numeric speed (mph) and the stopping distance (ft). 
+
+It is plain and intuitive to see here that speed influences the braking distance. Hence, speed will be our **explanatory variable*** and distance will be our **response variable**
+
+
+*Scatterplot*
+
+Let's take a visual lool at our data and plot the distance per speed : 
+
+```{r  plot}
+plot(cars, xlab = "Speed (mph)", ylab = "Stopping distance (ft)")
+lines(lowess(cars$speed, cars$dist, f = 2/3, iter = 2), col = "blue")
+title(main = "Stopping Distance (ft) / Speed (Mph)")
+```
+
+
+## Correlation?
+
+
+Now we will take a look at if there is a correlation between speed and braking distance. 
+In order to do that, we will conduct a Pearson's correlation. That is because both our predictor and output variables are continuous numerical variables. 
+
+```{r pearson}
+correlation <- cor(cars$dist, cars$speed, method = 'pearson')
+print(correlation)
+``` 
+
+The correlation is strong, being *0.8068949*. 
+
+
+## Visual representation 
+
+```{r plot2}
+library(ggplot2)
+gg <- ggplot(cars, aes(speed,dist))
+gg <- gg + geom_point()
+gg <- gg + geom_smooth(alpha=0.3, method="lm")
+print(gg)
+```
+
+
+We know that such positive correlation results do not mean causation, altough the relationship is quite obvious here. Let's hence run a general linear model. 
+
+## General linear model 
+
+### Assumptions 
+
+**Independence of observations** -- > probably present 
+**Normality** --> we will check it later on
+**Linearity** --> we will see it in our linear model 
+**Homoscedasticity** --> ""
+
+
+###  Check fro normality of the distribution 
+```{r normality}
+hist((cars$dist), main="Cars distance",
+     xlab ="distance")
+hist((cars$speed), main="Cars speed",
+      xlab = "speed")
+```
+
+It seems to be roughly normally around 20-40 
+
+
+
+### Linearity
+```{r linearity}
+ plot(speed ~ dist, data = cars)
+normality <- ggplot(cars, aes(speed,dist))
+normality <- normality + geom_point()
+normality <- normality + geom_smooth(alpha=0.3, method="lm")
+print(normality)
+```
+
+
+## Simple regression
+```{r regression}
+speed.dist.lm <- lm(speed ~ dist, data = cars)
+summary(speed.dist.lm)
+```
+
+This leads us to conclude that there is a significant positive relationship between speed and braking distance. 
+
+
+# Reference
+Ezekiel, M. (1930) Methods of Correlation Analysis. Wiley 
+
