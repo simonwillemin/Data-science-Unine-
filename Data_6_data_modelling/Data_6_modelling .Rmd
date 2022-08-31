@@ -1,0 +1,69 @@
+---
+title: "Data Modeling - Data 6"
+author: "Simon Willemin"
+date: "`r format(Sys.time(), '%d %B %Y')`"
+output: 
+  github_document:
+    toc: true
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r, message= F , warning= F}
+library(readr)
+library(dslabs)
+library(tidyverse)
+library(knitr)
+library(ggplot2)
+```
+
+``` {r}
+shootings <- read_csv('fatal-police-shootings-data.csv')
+str(shootings)
+head(shootings) %>% kable()
+shootings <- na.omit(shootings)
+shootings 
+
+```
+
+# Police Shootings
+## Where does it comes from ? 
+
+I've found this data on Github and it originates from the Washington Post. It is about the police shootings by officers on duty since 2015. It has lots of information about the circumstances of the shootings, for instance it displays the threat level of the "victim" into character variables. This data is really useful because it actually helps to have reliable data when talking about such sensitive topics. 
+
+
+# Plotting Signs of mental illness vs Race 
+
+We will plot here two variables using `ggplot`, namely to see the reported signs of mental illness by different races. 
+
+```{r}
+ggplot(shootings, aes(y=race))+
+  geom_bar(aes(fill=signs_of_mental_illness))+  
+  theme(axis.text.y = element_text(angle = 360, vjust = 0.3, hjust=1,size=6))
+```
+
+## Hypothesis formulation 
+
+H1: Race has an impact on the reported Signs of mental illness
+H0: Signs of mental illness are not influenced by race
+
+## Statistical test
+
+We will do a chi-square test, since those variables are likely non-parametric. 
+(I'm however not familiar with such notions and tests and am hence wildly speculating here)
+
+```{r}
+chisq.test(table(shootings$race,shootings$signs_of_mental_illness))
+
+```
+
+We can reject H0, since the correlation seems quite strong (p-value < 2.2e-16)
+
+# Reference 
+
+https://github.com/washingtonpost/data-police-shootings.git 
+
+
+
